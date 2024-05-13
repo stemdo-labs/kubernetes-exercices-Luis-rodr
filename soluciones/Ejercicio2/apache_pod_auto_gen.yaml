@@ -1,0 +1,104 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2024-05-13T14:35:39Z"
+  labels:
+    run: apache
+  name: apache
+  namespace: default
+  resourceVersion: "15411"
+  uid: 13434f64-e21f-4a99-82e1-0254e06b1e8e
+spec:
+  containers:
+  - image: httpd
+    imagePullPolicy: Always
+    name: apache
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-s94fp
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: docker-desktop
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-s94fp
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-05-13T14:35:42Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2024-05-13T14:35:39Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-05-13T14:35:42Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-05-13T14:35:42Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-05-13T14:35:39Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://e4ca16f0d4e245b775ce77ec079d75ace7dcc2d26fe1f9a778bdbe78d4a425a1
+    image: httpd:latest
+    imageID: docker-pullable://httpd@sha256:36c8c79f900108f0f09fd4148ad35ade57cba0dc19d13f3d15be24ce94e6a639
+    lastState: {}
+    name: apache
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-05-13T14:35:41Z"
+  hostIP: 192.168.65.3
+  hostIPs:
+  - ip: 192.168.65.3
+  phase: Running
+  podIP: 10.1.0.7
+  podIPs:
+  - ip: 10.1.0.7
+  qosClass: BestEffort
+  startTime: "2024-05-13T14:35:39Z"
