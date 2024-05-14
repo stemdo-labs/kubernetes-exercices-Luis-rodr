@@ -8,7 +8,7 @@
 kubectl apply -f .\apache-yaml.yaml
 ```
 
-![alt text](image.png)
+![alt text](\images\image.png)
 ---
 
 ### 2. Lista los POD mostrando toda la información posible.
@@ -16,18 +16,18 @@ kubectl apply -f .\apache-yaml.yaml
 ```
 kubectl get pods -o wide
 ```
-![alt text](image-1.png)
+![alt text](\images\image-1.png)
 
 ### 3. Conecta el puerto del POD a un puerto de tu equipo para poder acceder a él.
 ```
 kubectl port-forward pod/apache-yaml 8080:80
 ```
-![alt text](image-3.png)
-![alt text](image-2.png)
+![alt text](\images\image-3.png)
+![alt text](\images\image-2.png)
 
 ### 4. Borrar el POD 
 Primero salgo del comando anteior con Ctrl + C, luego, 
 ```
 kubectl delete pod apache-yaml
 ```
-![alt text](image-5.png)
+![alt text](\images\image-5.png)
