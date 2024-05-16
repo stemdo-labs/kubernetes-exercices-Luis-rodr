@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: demogat-yaml
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: gato
