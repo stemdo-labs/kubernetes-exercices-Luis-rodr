@@ -30,12 +30,11 @@ kind: Service
 metadata:
   name: web-svc
   labels:
-     app: web
+     app: web ##Puede ser otra etiqueta
 spec:
-  type: NodePort
   ports:
   - port: 80
-    nodePort: 30002
+    #nodePort: 30002  #Normalmente es aleatorio
     protocol: TCP
   selector:
      app: web
