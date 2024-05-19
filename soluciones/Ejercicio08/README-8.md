@@ -11,7 +11,7 @@
 - Despliega este de manera DECLARATIVA.
 
     ```console
-    docker pull noloknolo/colors
+    docker pull noloknolo/colors:v1
     kubectl apply -f colors.yaml
     ```
     ![alt text](images/image-6.png)
