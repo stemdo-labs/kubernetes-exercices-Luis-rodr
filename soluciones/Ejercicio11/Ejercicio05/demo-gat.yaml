@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demogat-yaml
+  namespace: ej11
+spec:
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: gato
+  template:
+    metadata:
+      labels:
+        app: gato
+    spec:
+      containers:
+        - name: tomcat
+          image: tomcat:10.1-jre21-temurin-jammy

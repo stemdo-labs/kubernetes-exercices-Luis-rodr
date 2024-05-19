@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+  namespace: ej13
+  labels:
+     app: labelTrece ##Puede ser otra etiqueta
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: labelTrece
