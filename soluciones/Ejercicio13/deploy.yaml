@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deploy
+  namespace: ej13
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: labelTrece
+  strategy:
+    type: Recreate ## Uso recreate porque solo hay una réplica
+  template:
+    metadata:
+      labels:
+        app: labelTrece
+    spec:
+      containers:
+      - name: ensenna-html
+        image: nginx:stable-perl
+        ports:
+          - containerPort: 80
+        resources: ##Especifico los límites de esta forma por curiosidad
+          limits:
+            memory: 600Mi
+            cpu: 1
+          requests:
+            memory: 300Mi
+            cpu: 500m
+        volumeMounts:
+            - name: ej-13-mount
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: ej-13-mount
+          configMap:
+            name: ej-13-configmap 
